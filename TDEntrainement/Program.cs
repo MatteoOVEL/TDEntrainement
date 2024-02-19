@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using TDEntrainement.Models.EntityFramework;
+using Npgsql;
 namespace TDEntrainement
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -13,7 +17,12 @@ namespace TDEntrainement
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<TDEntrainementContext>(options =>
+          options.UseNpgsql(builder.Configuration.GetConnectionString("TDEntrainementContext")));
+
             var app = builder.Build();
+
+          
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
