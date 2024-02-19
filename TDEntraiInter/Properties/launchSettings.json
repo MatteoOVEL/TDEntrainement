@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TDEntraiInter (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TDEntraiInter (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

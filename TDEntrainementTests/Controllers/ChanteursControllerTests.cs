@@ -26,43 +26,32 @@ namespace TDEntrainement.Controllers.Tests
         public ChanteursControllerTests()
         {
             var builder = new DbContextOptionsBuilder<TDEntrainementContext>().UseNpgsql("Server=51.83.36.122;port=5432;Database=ovemat;uid=ovemat;SearchPath=tdentrai;password=1gJeFH;");
-            _context = new TDEntrainementContext(builder.Options);
-            _controller = new TDEntrainementContext(_context);
+            _context = new (builder.Options);
+            _controller = new (_context);
         }
-        [TestMethod()]
-        public void ChanteursControllerTest()
+        [TestMethod]
+        public void GetSerie_ExistingIdPassed_ReturnsRightItem()
         {
-            Assert.Fail();
-        }
+            // Arrange
+            Chanteur chanteur = new Chanteur
+            {
+                Idchanteur = 1,
+                Nomchanteur = "oui",
+            };
 
-        [TestMethod()]
-        public void GetChanteursTest()
-        {
-            Assert.Fail();
-        }
+            // Act
+            var result = _controller.GetChanteur(1);
 
-        [TestMethod()]
-        public void GetChanteurTest()
-        {
-            Assert.Fail();
-        }
+            // Assert
+            Assert.IsInstanceOfType(result.Result, typeof(ActionResult<Chanteur>), "Pas un ActionResult");
 
-        [TestMethod()]
-        public void PutChanteurTest()
-        {
-            Assert.Fail();
-        }
+            var actionResult = result.Result as ActionResult<Chanteur>;
 
-        [TestMethod()]
-        public void PostChanteurTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteChanteurTest()
-        {
-            Assert.Fail();
+            // Assert
+            Assert.IsNotNull(actionResult, "ActionResult null");
+            Assert.IsNotNull(actionResult.Value, "Valeur nulle");
+            Assert.IsInstanceOfType(actionResult.Value, typeof(Chanteur), "Pas une serie");
+            Assert.AreEqual(chanteur, (Chanteur)actionResult.Value, "Series pas identiques");
         }
     }
 }

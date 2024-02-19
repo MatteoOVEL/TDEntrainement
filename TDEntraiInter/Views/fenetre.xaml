@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDEntraiInter.Views.fenetre">
+  <ContentView.Content>
+      <StackLayout>
+            <TextBlock
+            x:Name="lblNumeroSerie"
+            Margin="0,30,0,0"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            Text="Numero de serie a afficher" />
+            <TextBox
+            x:Name="txtNumeroSerie"
+            Width="50"
+            Margin="0,5,0,0"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="lblNumeroSerie"
+            Text="{Binding IdToSearch, Mode=TwoWay}" />
+            <Button
+            x:Name="BtnRechercher"
+            Width="200"
+            Margin="0,20,0,0"
+            Command="{Binding BtnSearchCommand}"
+            Content="Rechercher"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtNumeroSerie"/>
+            <TextBlock
+            x:Name="lblTitre"
+            Margin="0,30,0,0"
+            Text="Titre" 
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="BtnRechercher"/>
+            <TextBox
+            x:Name="txtTitre"
+            Width="500"
+            Margin="0,5,0,0"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="lblTitre"
+            Text="{Binding SerieToUpdate.Titre, Mode=TwoWay}" />
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
